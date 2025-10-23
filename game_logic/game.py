@@ -1,5 +1,4 @@
-from ..utils.deck import *
-
+from deck import *
 
 def create_player(name:str) -> dict:
     if not name:
@@ -7,7 +6,6 @@ def create_player(name:str) -> dict:
     player = {'name':name,'hand':[],'won_pile':[]}
 
     return player
-
 
 
 def init_game() -> dict:
@@ -23,7 +21,7 @@ def init_game() -> dict:
 def play_round(p1:dict, p2:dict):
     player1_card = p1['hand'].pop()
     player2_card = p2['hand'].pop()
-    result = deck.create_card(player1_card,player2_card)
+    result = deck.compere_cards(player1_card,player2_card)
     match result:
         case 'p1':
             p1['won_pile'].append(player1_card,player2_card)
@@ -33,6 +31,28 @@ def play_round(p1:dict, p2:dict):
             print(f"{p2['name']} won!")
         case 'WAR':
             print("WAR!")
+
+
+def war(p1:dict,p2:dict):
+    win_deck =[]
+    for _ in range(3):
+        win_deck.append(p1['hand'].pop())
+        win_deck.append(p2['hand'].pop())
+    player1_card = p1['hand'].pop()
+    player2_card = p2['hand'].pop()
+    result = deck.compere_cards(player1_card, player2_card)
+    match result:
+        case 'p1':
+            p1['won_pile'].append(player1_card, player2_card)
+            p1['won_pile'] += win_deck
+            print(f"{p1['name']} won!")
+        case 'p2':
+            p2['won_pile'].append(player1_card, player2_card)
+            p2['won_pile'] += win_deck
+            print(f"{p2['name']} won!")
+        case 'WAR':
+            print("WAR!")
+
 
 
 
