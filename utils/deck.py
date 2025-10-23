@@ -34,13 +34,3 @@ def shuffle(deck:list[dict]) -> list[dict]:
 
     return deck
 
-
-card1 = create_card('10','S')
-card2 = create_card('9','S')
-print(compere_cards(card1,card2))
-deck1 = create_deck()
-print(len(deck1))
-print(deck1)
-deck1 = shuffle(deck1)
-print(len(deck1))
-
