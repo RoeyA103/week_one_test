@@ -1,4 +1,4 @@
-from cards_table import cards_rank , cards_suite
+from cards_table import *
 from random import randint
 Cards_rank = cards_rank()
 Cards_suite = cards_suite()
