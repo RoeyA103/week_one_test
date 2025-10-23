@@ -1,9 +1,12 @@
-from cards_table import cards_rank , cards_suite
+
+from  utils.cards_table import *
 from random import randint
 
+Cards_rank = cards_rank()
+Cards_suite = cards_suite()
 
 def create_card(rank:str, suite:str) -> dict:
-    card = {'rank':rank,'suit':suite,'value':cards_rank[rank]}
+    card = {'rank':rank,'suit':suite,'value':Cards_rank[rank]}
     return card
 
 def compere_cards(p1_card:dict, p2_card:dict) -> str:
@@ -16,8 +19,8 @@ def compere_cards(p1_card:dict, p2_card:dict) -> str:
 
 def create_deck() -> list[dict]:
     deck = []
-    for rank in cards_rank:
-        for suite in cards_suite:
+    for rank in Cards_rank:
+        for suite in Cards_suite:
             deck.append(create_card(rank,suite))
 
     return deck
@@ -33,4 +36,7 @@ def shuffle(deck:list[dict]) -> list[dict]:
         deck[index1] , deck[index2] = deck[index2] , deck[index1]
 
     return deck
+
+
+
 

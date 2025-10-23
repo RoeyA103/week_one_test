@@ -1,4 +1,4 @@
-from game_logic.deck import *
+from utils.deck import *
 
 def create_player(name:str) -> dict:
     if not name:
