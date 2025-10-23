@@ -1,4 +1,5 @@
-from cards_table import *
+from game_logic.cards_table import *
+
 from random import randint
 Cards_rank = cards_rank()
 Cards_suite = cards_suite()

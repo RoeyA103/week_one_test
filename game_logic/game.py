@@ -1,4 +1,4 @@
-from deck import *
+from game_logic.deck import *
 
 def create_player(name:str) -> dict:
     if not name:
@@ -13,8 +13,8 @@ def init_game() -> dict:
     p2 = create_player("")
     deck1 = create_deck()
     deck1 = shuffle(deck1)
-    p1['hand'].append(deck1[:26])
-    p2['hand'].append(deck1[26:])
+    p1['hand'].extend(deck1[:26])
+    p2['hand'].extend(deck1[26:])
     return {'deck':deck1,'player_1':p1,'player_2':p2}
 
 
@@ -24,10 +24,10 @@ def play_round(p1:dict, p2:dict):
     result = compere_cards(player1_card,player2_card)
     match result:
         case 'p1':
-            p1['won_pile'].append(player1_card,player2_card)
+            p1['won_pile'].extend([player1_card,player2_card])
             print(f"{p1['name']} won!")
         case 'p2':
-            p2['won_pile'].append(player1_card, player2_card)
+            p2['won_pile'].extend([player1_card,player2_card])
             print(f"{p2['name']} won!")
         case 'WAR':
             print("war")
@@ -49,3 +49,13 @@ def war(p1:dict,p2:dict):
             p2['won_pile'] += win_deck
 
 
+def run_game(player1 , player2):
+    while player1['hand'] and player2['hand']:
+        play_round(player1,player2)
+
+    if len(player1['won_pile']) >  len(player2['won_pile']):
+        print(f"{player1['name']} won!!!!!!!!")
+    elif   len(player1['won_pile']) <  len(player2['won_pile']):
+        print(f"{player2['name']} won!!!!!!!")
+    else:
+        print("its a draw")
